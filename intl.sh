@@ -1,0 +1,2 @@
+flutter pub pub run intl_generator:extract_to_arb --output-dir=i10n_arb lib/i10n/localization_intl.dart
+flutter pub pub run intl_generator:generate_from_arb --output-dir=lib/i10n --no-use-deferred-loading lib/i10n/localization_intl.dart i10n_arb/intl_*.arb

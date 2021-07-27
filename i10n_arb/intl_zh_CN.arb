@@ -1,0 +1,150 @@
+{
+  "@@last_modified": "2019-11-02T21:04:04.322638",
+  "@@locale":"zh_CN",
+  "Flutter App": "Github 应用",
+  "@Flutter App": {
+    "description": "Title for the Demo application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dynamic": "动态",
+  "@Dynamic": {
+    "description": "tabBar item name: dynamic",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Trend": "趋势",
+  "@Trend": {
+    "description": "tabBar item name: dynamic",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mine": "我",
+  "@Mine": {
+    "description": "tabBar item name: mine",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Language Toggle": "语言切换",
+  "@Language Toggle": {
+    "description": "language toggle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Theme Toggle": "主题切换",
+  "@Theme Toggle": {
+    "description": "theme toggle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "User Info": "个人信息",
+  "@User Info": {
+    "description": "user info",
+    "type": "text",
+    "placeholders": {}
+  },
+  "About": "关于",
+  "@About": {
+    "description": "about",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Check for updates": "检查更新",
+  "@Check for updates": {
+    "description": "Check for updates",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Feedback": "问题反馈",
+  "@Feedback": {
+    "description": "feedback",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reading history": "阅读历史",
+  "@Reading history": {
+    "description": "Reading history",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sign Out": "退出登录",
+  "@Sign Out": {
+    "description": "sign out",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Please input username": "请输入用户名",
+  "@Please input username": {
+    "description": "login username",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Please input password": "请输入密码",
+  "@Please input password": {
+    "description": "login password",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Login": "登录",
+  "@Login": {
+    "description": "login button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Loading...": "加载中...",
+  "@Loading...": {
+    "description": "加载中",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appName": "Github 应用",
+  "@appName": {
+    "description": "github 应用",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appVersion": "版本: {version}",
+  "@appVersion": {
+    "description": "版本: version",
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "noData": "暂无数据！",
+  "@noData": {
+    "description": "暂无数据!",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingMore": "加载中...",
+  "@loadingMore": {
+    "description": "加载中...",
+    "type": "text",
+    "placeholders": {}
+  },
+  "daily": "今日",
+  "@daily": {
+    "description": "今日",
+    "type": "text",
+    "placeholders": {}
+  },
+  "weekly": "本周",
+  "@weekly": {
+    "description": "本周",
+    "type": "text",
+    "placeholders": {}
+  },
+  "monthly": "本月",
+  "@monthly": {
+    "description": "本月",
+    "type": "text",
+    "placeholders": {}
+  },
+  "trendAll": "全部",
+  "@trendAll": {
+    "description": "全部",
+    "type": "text",
+    "placeholders": {}
+  }
+}
