@@ -8,28 +8,36 @@ part of 'event_payload.dart';
 
 EventPayload _$EventPayloadFromJson(Map<String, dynamic> json) {
   return EventPayload(
-    json['push_id'] as int,
-    json['size'] as int,
-    json['distinct_size'] as int,
-    json['ref'] as String,
-    json['head'] as String,
-    json['before'] as String,
-    (json['commits'] as List<dynamic>)
-        .map((e) => PushEventCommit.fromJson(e as Map<String, dynamic>))
+    json['type'] as String,
+    json['push_id'] as int?,
+    json['size'] as int?,
+    json['distinct_size'] as int?,
+    json['ref'] as String?,
+    json['head'] as String?,
+    json['before'] as String?,
+    (json['commits'] as List<dynamic>?)
+        ?.map((e) => PushEventCommit.fromJson(e as Map<String, dynamic>))
         .toList(),
-    json['action'] as String,
-    json['ref_type'] as String,
-    json['master_branch'] as String,
-    json['description'] as String,
-    json['pusher_type'] as String,
-    Release.fromJson(json['release'] as Map<String, dynamic>),
-    Issue.fromJson(json['issue'] as Map<String, dynamic>),
-    IssueEvent.fromJson(json['comment'] as Map<String, dynamic>),
+    json['action'] as String?,
+    json['ref_type'] as String?,
+    json['master_branch'] as String?,
+    json['description'] as String?,
+    json['pusher_type'] as String?,
+    json['release'] == null
+        ? null
+        : Release.fromJson(json['release'] as Map<String, dynamic>),
+    json['issue'] == null
+        ? null
+        : Issue.fromJson(json['issue'] as Map<String, dynamic>),
+    json['comment'] == null
+        ? null
+        : IssueEvent.fromJson(json['comment'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$EventPayloadToJson(EventPayload instance) =>
     <String, dynamic>{
+      'type': instance.type,
       'push_id': instance.pushId,
       'size': instance.size,
       'distinct_size': instance.distinctSize,

@@ -1,9 +1,8 @@
 import 'package:json_annotation/json_annotation.dart'
     show JsonSerializable, JsonKey;
 
-import './user.dart' show User;
+import './actor.dart' show Actor;
 import './repository.dart' show Repository;
-import './event_payload.dart' show EventPayload;
 
 part 'event.g.dart';
 
@@ -11,10 +10,9 @@ part 'event.g.dart';
 class Event {
   String id;
   String type;
-  User actor;
+  Actor actor;
   Repository repo;
-  User org;
-  EventPayload payload;
+  Map<String, dynamic> payload;
 
   @JsonKey(name: 'public')
   bool isPublish;
@@ -27,7 +25,6 @@ class Event {
     this.type,
     this.actor,
     this.repo,
-    this.org,
     this.payload,
     this.isPublish,
     this.createdAt,

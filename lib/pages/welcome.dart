@@ -7,6 +7,7 @@ import 'package:flare_flutter/flare_actor.dart' show FlareActor;
 import '../store/app.dart' show AppState;
 import '../route/index.dart' show Router;
 import '../services/user_service.dart' show UserService;
+import '../../store/user.dart' show UpdateUserAction;
 
 class WelcomePage extends StatefulWidget {
   static const String path = 'welcome';
@@ -27,8 +28,10 @@ class _WelcomePageState extends State<WelcomePage> {
     hasInited = true;
     Store<AppState> store = StoreProvider.of(context);
     new Future.delayed(const Duration(seconds: 2, milliseconds: 500), () {
-      UserService.initUserInfo(store).then((res) {
-        if (res != null && res.result) {
+      // 获取本地用户信息，如果有跳转到 home，如果没有跳转到登录页面
+      UserService.initUserInfo().then((res) {
+        if (res != null && res?.result) {
+          store.dispatch(UpdateUserAction(res.data));
           Router.goHome(context);
         } else {
           Router.goLogin(context);

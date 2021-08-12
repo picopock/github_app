@@ -1,10 +1,23 @@
-import 'package:github_app/utils/config.dart' show Config;
+import '../utils/config.dart' show Config;
+import './http/config.dart' show HttpConfig;
 
 class Address {
   static const String host = 'https://api.github.com';
   static const String hostWeb = 'https://github.com';
   static const String graphicHost = 'https://grhchart.rshah.org';
   static const String updateUrl = 'https://www.pgyer.com/guqa';
+
+  /// oauth 授权页面
+  static oAuthUrl() {
+    return "$hostWeb/login/oauth/authorize?client_id"
+        "=${HttpConfig.CLIENT_ID}&state=github_app&"
+        "redirect_uri=githubapp://authed";
+  }
+
+  // 根据 oauth code 获取 access token
+  static getAccessTokenByOAuthCode() {
+    return "$hostWeb/login/oauth/access_token";
+  }
 
   ///获取授权  post
   static getAuthorization() {
@@ -141,7 +154,7 @@ class Address {
   }
 
   ///用户 starred count
-  static userStar(username, [String sort= 'updated']) {
+  static userStar(username, [String sort = 'updated']) {
     return "$host/users/$username/starred?sort=$sort";
   }
 

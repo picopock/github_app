@@ -97,6 +97,20 @@
     "type": "text",
     "placeholders": {}
   },
+  "OAuth Login": "OAuth 授权登录",
+  "@OAuth Login": {
+    "description": "oauth login",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "OAuth": "OAuth 授权",
+  "@OAuth": {
+    "description": "oauth login title",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
   "appName": "Github 应用",
   "@appName": {
     "description": "github 应用",

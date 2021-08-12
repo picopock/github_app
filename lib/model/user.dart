@@ -25,24 +25,25 @@ class User {
   String type;
   bool siteAdmin;
   String name;
-  String company;
+  String? company;
   String blog;
-  String location;
-  String email;
-  String starred;
-  String bio;
+  String? location;
+  String? email;
+  String? starred;
+  String? bio;
+  String? twitterUsername;
   int publicRepos;
   int publicGists;
   int followers;
   int following;
   DateTime createdAt;
   DateTime updatedAt;
-  int privateGists;
-  int totalPrivateRepos;
-  int ownedPrivateRepos;
-  int diskUsage;
-  int collaborators;
-  bool twoFactorAuthentication;
+  int? privateGists;
+  int? totalPrivateRepos;
+  int? ownedPrivateRepos;
+  int? diskUsage;
+  int? collaborators;
+  bool? twoFactorAuthentication;
 
   User(
     this.login,

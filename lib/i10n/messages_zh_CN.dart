@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "Loading..." : MessageLookupByLibrary.simpleMessage("加载中..."),
     "Login" : MessageLookupByLibrary.simpleMessage("登录"),
     "Mine" : MessageLookupByLibrary.simpleMessage("我"),
+    "OAuth" : MessageLookupByLibrary.simpleMessage("OAuth 授权"),
+    "OAuth Login" : MessageLookupByLibrary.simpleMessage("OAuth 授权登录"),
     "Please input password" : MessageLookupByLibrary.simpleMessage("请输入密码"),
     "Please input username" : MessageLookupByLibrary.simpleMessage("请输入用户名"),
     "Reading history" : MessageLookupByLibrary.simpleMessage("阅读历史"),

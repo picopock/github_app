@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "Loading..." : MessageLookupByLibrary.simpleMessage("Loading..."),
     "Login" : MessageLookupByLibrary.simpleMessage("Login"),
     "Mine" : MessageLookupByLibrary.simpleMessage("Mine"),
+    "OAuth" : MessageLookupByLibrary.simpleMessage("OAuth"),
+    "OAuth Login" : MessageLookupByLibrary.simpleMessage("OAuth Login"),
     "Please input password" : MessageLookupByLibrary.simpleMessage("Please input password"),
     "Please input username" : MessageLookupByLibrary.simpleMessage("Please input username"),
     "Reading history" : MessageLookupByLibrary.simpleMessage("Reading history"),

@@ -1,13 +1,19 @@
 import 'dart:async' show Future;
 import 'dart:collection' show HashMap;
 import 'package:dio/dio.dart'
-    show Dio, Options, DioError, Response,  DioErrorType;
+    show
+        Dio,
+        Options,
+        DioError,
+        Response,
+        DioErrorType,
+        RequestOptions,
+        Headers;
+
 import '../http/interceptors/token_interceptor.dart' show TokenInterceptors;
 import '../http/interceptors/header_interceptor.dart' show HeaderInterceptors;
 import '../http/interceptors/log_interceptor.dart' show LogsInterceptors;
 import '../http/interceptors/error_interceptor.dart' show ErrorInterceptors;
-import '../http/interceptors/response_interceptor.dart'
-    show ResponseInterceptors;
 import './result_data.dart' show ResultData;
 import './code.dart' show Code;
 
@@ -34,12 +40,12 @@ class HTTP {
     _dio.interceptors.add(_tokenInterceptors);
     _dio.interceptors.add(new LogsInterceptors());
     _dio.interceptors.add(new ErrorInterceptors(/**_dio*/));
-    _dio.interceptors.add(new ResponseInterceptors());
   }
 
   Future<ResultData> request(
     String path, {
     data,
+    Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
     Options? options,
     isNoTip = false,
@@ -56,7 +62,6 @@ class HTTP {
       options.headers = _headers;
     }
 
-    Response response;
     try {
       // Future<Response<T>> request<T>(
       //   String path, {
@@ -67,16 +72,33 @@ class HTTP {
       //   ProgressCallback onSendProgress,
       //   ProgressCallback onReceiveProgress,
       // });
-      response = await _dio.request(path, data: data, options: options);
+      Response response = await _dio.request(path,
+          data: data, queryParameters: params, options: options);
+      RequestOptions _options = response.requestOptions;
+      ResultData value;
+      final header = response.headers[Headers.contentTypeHeader];
+      if (header != null && header.toString().contains('text')) {
+        value = new ResultData(response.data, true, Code.SUCCESS);
+      } else if (response.statusCode! >= 200 && response.statusCode! < 300) {
+        value = new ResultData(
+          response.data,
+          true,
+          Code.SUCCESS,
+          headers: response.headers,
+        );
+      } else {
+        print('${_options.path}\n ${response.toString()}');
+        value = new ResultData(
+          response.data,
+          false,
+          response.statusCode!,
+          headers: response.headers,
+        );
+      }
+      return value;
     } on DioError catch (error) {
       return resultError(error, isNoTip);
     }
-
-    if (response.data is DioError) {
-      return resultError(response.data, isNoTip);
-    }
-
-    return response.data;
   }
 
   clearAuthorization() {

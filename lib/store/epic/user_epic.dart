@@ -1,6 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 
-import './redux_epics/redux_epics.dart' show EpicClass, EpicStore;
+import 'package:redux_epics/redux_epics.dart' show EpicClass, EpicStore;
 import '../app.dart' show AppState;
 import '../user.dart' show FetchUserAction, UpdateUserAction;
 import '../../services/user_service.dart' show UserService;

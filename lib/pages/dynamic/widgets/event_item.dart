@@ -25,17 +25,24 @@ class EventItem extends StatelessWidget {
                     children: <Widget>[
                       _renderAvatar(context), // 头像
                       Expanded(
-                        child: Text(data.actionUser ?? '',
-                            style: Constant.smallTextBold),
+                        child: Text(
+                          data.actionUser ?? '',
+                          style: Constant.smallTextBold,
+                        ),
                       ),
-                      Text(data.actionTime ?? '', style: Constant.smallSubText),
+                      Text(
+                        data.actionTime ?? '',
+                        style: Constant.smallSubText,
+                      ),
                     ],
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
                     alignment: Alignment.topLeft,
-                    child:
-                        Text(data.actionTarget, style: Constant.smallTextBold),
+                    child: Text(
+                      data.actionTarget,
+                      style: Constant.smallTextBold,
+                    ),
                   ),
                   _renderDesc(context),
                 ],

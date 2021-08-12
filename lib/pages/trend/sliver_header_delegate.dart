@@ -45,4 +45,7 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
 }
 
 typedef Widget Builder(
-    BuildContext context, double shrinkOffset, bool overlapsContent);
+  BuildContext context,
+  double shrinkOffset,
+  bool overlapsContent,
+);

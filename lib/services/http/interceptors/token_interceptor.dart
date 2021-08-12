@@ -1,35 +1,10 @@
-import 'package:dio/dio.dart' show Interceptor, RequestOptions, Response, RequestInterceptorHandler, ResponseInterceptorHandler;
+import 'package:dio/dio.dart'
+    show Interceptor, RequestOptions, RequestInterceptorHandler;
 import '../../../utils/storage.dart' show LocalStorage;
 import '../../../utils/config.dart' show Config;
 
 class TokenInterceptors extends Interceptor {
   String? _token;
-
-  @override
-  onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    if (_token == null) {
-      var authorizationCode = await getAuthorization();
-      if (authorizationCode != null) {
-        _token = authorizationCode;
-      }
-    }
-    options.headers['Authorization'] = _token;
-    return handler.next(options);
-  }
-
-  @override
-  onResponse(Response response, ResponseInterceptorHandler handler) async {
-    try {
-      var responseJSON = response.data;
-      if (response.statusCode == 201 && responseJSON['token'] != null) {
-        _token = 'token ' + responseJSON['token'];
-        await LocalStorage.set(Config.TOKEN_KEY, _token);
-      }
-    } catch (e) {
-      print(e);
-    }
-    return handler.next(response);
-  }
 
   getAuthorization() async {
     String? token = await LocalStorage.get(Config.TOKEN_KEY);
@@ -50,5 +25,19 @@ class TokenInterceptors extends Interceptor {
   clearAuthorization() {
     this._token = null;
     LocalStorage.remove(Config.TOKEN_KEY);
+  }
+
+  @override
+  onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    if (_token == null) {
+      var authorizationCode = await getAuthorization();
+      if (authorizationCode != null) {
+        _token = authorizationCode;
+      }
+    }
+    if (_token != null) {
+      options.headers['Authorization'] = _token;
+    }
+    return handler.next(options);
   }
 }

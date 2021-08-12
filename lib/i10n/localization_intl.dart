@@ -55,6 +55,10 @@ class AppLocalizations {
   String get loginPasswordHint =>
       Intl.message('Please input password', desc: 'login password');
   String get login => Intl.message('Login', desc: 'login button');
+  String get oAuthLogin =>
+      Intl.message('OAuth Login', desc: 'oauth login');
+  String get oAuthLoginTitle =>
+      Intl.message('OAuth', desc: 'oauth login title');
   String get loading => Intl.message('Loading...', desc: 'loading');
 
   String get appName =>

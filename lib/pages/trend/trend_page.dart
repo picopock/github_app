@@ -125,10 +125,13 @@ class _TrendPageState extends State<TrendPage>
   Widget _renderItem(data) {
     ReposViewModel reposViewModal = ReposViewModel.fromTrendMap(data);
 
-    return ReposItem(reposViewModal, onPressed: () {
-      Router.goReposDetail(
-          context, reposViewModal.ownerName, reposViewModal.repositoryName);
-    });
+    return ReposItem(
+      reposViewModal,
+      onPressed: () {
+        Router.goReposDetail(
+            context, reposViewModal.ownerName, reposViewModal.repositoryName);
+      },
+    );
   }
 
   // 嵌套滚动头部
@@ -244,8 +247,10 @@ class _TrendPageState extends State<TrendPage>
     );
   }
 
-  List<PopupMenuEntry<TrendTypeModel>> _renderHeaderPopItemChild(List<TrendTypeModel> data) {
-    List<PopupMenuEntry<TrendTypeModel>> list = <PopupMenuEntry<TrendTypeModel>>[];
+  List<PopupMenuEntry<TrendTypeModel>> _renderHeaderPopItemChild(
+      List<TrendTypeModel> data) {
+    List<PopupMenuEntry<TrendTypeModel>> list =
+        <PopupMenuEntry<TrendTypeModel>>[];
     for (TrendTypeModel item in data) {
       list.add(PopupMenuItem<TrendTypeModel>(
         value: item,

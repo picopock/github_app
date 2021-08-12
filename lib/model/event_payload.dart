@@ -10,23 +10,25 @@ part 'event_payload.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class EventPayload {
-  int pushId;
-  int size;
-  int distinctSize;
-  String ref;
-  String head;
-  String before;
-  List<PushEventCommit> commits;
-  String action;
-  String refType;
-  String masterBranch;
-  String description;
-  String pusherType;
-  Release release;
-  Issue issue;
-  IssueEvent comment;
+  String type;
+  int? pushId;
+  int? size;
+  int? distinctSize;
+  String? ref;
+  String? head;
+  String? before;
+  List<PushEventCommit>? commits;
+  String? action;
+  String? refType;
+  String? masterBranch;
+  String? description;
+  String? pusherType;
+  Release? release;
+  Issue? issue;
+  IssueEvent? comment;
 
   EventPayload(
+    this.type,
     this.pushId,
     this.size,
     this.distinctSize,
@@ -41,7 +43,7 @@ class EventPayload {
     this.pusherType,
     this.release,
     this.issue,
-    this.comment
+    this.comment,
   );
 
   factory EventPayload.fromJson(Map<String, dynamic> json) =>

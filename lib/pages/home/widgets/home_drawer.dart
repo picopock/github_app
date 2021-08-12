@@ -79,7 +79,9 @@ class HomeDrawer extends StatelessWidget {
                           child: FadeInImage(
                             placeholder:
                                 AssetImage(CustomICons.DEFAULT_USER_ICON),
-                            image: NetworkImage(user?.avatarUrl??CustomICons.DEFAULT_USER_ICON),
+                            image: NetworkImage(
+                              user?.avatarUrl ?? CustomICons.DEFAULT_USER_ICON,
+                            ),
                             // 预览图
                             fit: BoxFit.fitWidth,
                           ),
@@ -184,10 +186,11 @@ class HomeDrawer extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).primaryColor,
-                                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                                    textStyle: TextStyle(color: Colors.white)
-                                  ),
+                                      primary: Theme.of(context).primaryColor,
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12.0),
+                                      textStyle:
+                                          TextStyle(color: Colors.white)),
                                   child: Text(
                                     AppLocalizations.of(context).signout,
                                     style: TextStyle(fontSize: 18.0),

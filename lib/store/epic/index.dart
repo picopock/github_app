@@ -1,4 +1,4 @@
-import './redux_epics/redux_epics.dart'
+import 'package:redux_epics/redux_epics.dart'
     show EpicMiddleware, combineEpics /* , TypedEpic */;
 
 import '../app.dart' show AppState;

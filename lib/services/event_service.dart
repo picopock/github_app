@@ -18,6 +18,18 @@ class EventService {
         return null;
       }
       for (int i = 0; i < data.length; i++) {
+        if (data[i]['payload'] != null) {
+          Map payload = data[i]['payload'];
+          data[i]['payload'] = new Map<String, dynamic>();
+          payload.forEach((k, v) {
+            data[i]['payload']['type'] = k;
+            if (v is Map) {
+              data[i]['payload'].addAll(v);
+            } else {
+              data[i]['payload'][k] = v;
+            }
+          });
+        }
         list.add(Event.fromJson(data[i]));
       }
       return new DataResult(list, true);

@@ -187,7 +187,9 @@ class _DynamicPageState extends State<DynamicPage>
 
   Future<void> _refreshData() async {
     final String? username = store.state.userInfo?.login;
-    await dynamicModel.initData(username!);
+    if (username != null) {
+      await dynamicModel.initData(username);
+    }
   }
 
   Future<void> _loadMore() async {

@@ -5,6 +5,7 @@ import '../route/index.dart' show Router;
 final loginReducer = combineReducers<bool>([
   TypedReducer<bool, LoginSuccessAction>(_loginResult),
   TypedReducer<bool, LogoutAction>(_logoutResult),
+  TypedReducer<bool, OAuthLoginSuccessAction>(_oAuthLoginSuccess),
 ]);
 
 class LoginAction {
@@ -42,4 +43,18 @@ class LogoutAction {
 
 bool _logoutResult(bool result, LogoutAction action) {
   return false;
+}
+
+class OAuthSuccessAction {
+  final BuildContext context;
+  final String code;
+  OAuthSuccessAction(this.context, this.code);
+}
+
+class OAuthLoginSuccessAction {
+  OAuthLoginSuccessAction();
+}
+
+bool _oAuthLoginSuccess(bool result, OAuthLoginSuccessAction action) {
+  return true;
 }

@@ -21,7 +21,7 @@ class DynamicModel extends Model {
 
   set dataList(List value) {
     _dataList.clear();
-    if (value.isEmpty) {
+    if (value.isNotEmpty) {
       _dataList.addAll(value);
       notifyListeners();
     }

@@ -12,11 +12,16 @@ class AppState {
   ThemeData themeData;
   bool login;
 
-  AppState({ required this.userInfo, required this.locale, required this.themeData, required this.login});
+  AppState({
+    required this.userInfo,
+    required this.locale,
+    required this.themeData,
+    required this.login,
+  });
 }
 
 AppState appReducer(AppState state, dynamic action) {
-  return AppState(
+  return new AppState(
     locale: localeReducer(state.locale, action),
     themeData: themeDataReducer(state.themeData, action),
     userInfo: userReducer(state.userInfo, action),
@@ -28,5 +33,5 @@ final AppState initialState = AppState(
   locale: Locale('zh', 'CN'),
   themeData: ThemeData(),
   login: false,
-  userInfo: null
+  userInfo: null,
 );

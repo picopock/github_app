@@ -1,5 +1,4 @@
 import 'dart:convert' show utf8, base64, json;
-import 'package:redux/redux.dart' show Store;
 import 'package:dio/dio.dart' show Options;
 
 import '../utils/storage.dart' show LocalStorage;
@@ -7,12 +6,14 @@ import '../utils/config.dart' show Config;
 import '../services/http/http.dart' show http;
 import './address.dart' show Address;
 import './http/config.dart' show HttpConfig;
-import '../store/user.dart' show UpdateUserAction;
 import '../model/user.dart' show User;
 import './data_result.dart' show DataResult;
+import 'package:redux_epics/redux_epics.dart' show EpicStore;
+import '../store/app.dart' show AppState;
 
 class UserService {
-  static login(username, password, store) async {
+  static login(
+      String username, String password, EpicStore<AppState> store) async {
     String type = username + ':' + password;
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
@@ -39,17 +40,28 @@ class UserService {
       options: new Options(method: 'post'),
     );
 
-    if (res.result) {
-      LocalStorage.set(Config.PW_KEY, password);
-      getUserInfo().then((resultData) {
-        store.dispatch(new UpdateUserAction(resultData.data));
-        if (Config.DEBUG) {
-          print('user result ${resultData.result.toString()}');
-          print(res.data.toString());
-        }
-      });
-    }
     return new DataResult(null, res.result);
+  }
+
+  static getAccessTokenByOAuthCode(String code) async {
+    final Map<String, dynamic> data = {
+      "code": code,
+      "client_id": HttpConfig.CLIENT_ID,
+      "client_secret": HttpConfig.CLIENT_SECRET
+    };
+
+    final res = await http.request(
+      Address.getAccessTokenByOAuthCode(),
+      data: data,
+      options: new Options(method: 'POST'),
+    );
+
+    if (res.result) {
+      print('get access token: ${res.data}');
+      final _token = "${res.data['token_type']} ${res.data['access_token']}";
+      await LocalStorage.set(Config.TOKEN_KEY, _token);
+    }
+    return res.result;
   }
 
   static getUserInfo([String? username]) async {
@@ -77,11 +89,12 @@ class UserService {
     }
   }
 
-  static initUserInfo(Store store) async {
-    var token = await LocalStorage.get(Config.TOKEN_KEY);
-    var res = await getUserInfoLocal();
-    if (res != null && res.result && token != null) {
-      store.dispatch(UpdateUserAction(res.data));
+  /// 如果存在 access_token 从本地加载用户数据
+  static initUserInfo() async {
+    final String? token = await LocalStorage.get(Config.TOKEN_KEY);
+    if (token != null && token.length > 0) {
+      final res = await getUserInfoLocal();
+      return res;
     }
   }
 
@@ -102,7 +115,7 @@ class UserService {
     if (res.result && res.headers != null) {
       try {
         List<String> link = res.headers['link'];
-        if (link.length>0) {
+        if (link.length > 0) {
           int indexStart = link[0].lastIndexOf('page=') + 5;
           int indexEnd = link[0].lastIndexOf('>');
           if (indexStart >= 0 && indexEnd >= 0) {

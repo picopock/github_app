@@ -37,13 +37,13 @@ class CustomTabBar extends StatefulWidget {
 
   @override
   _CustomTabBarState createState() => _CustomTabBarState(
-        type!,
-        tabViews!,
-        indicatorColor!,
-        drawer!,
-        floatingActionButton!,
-        tarWidgetControl!,
-        onPageChanged!,
+        type,
+        tabViews,
+        indicatorColor,
+        drawer,
+        floatingActionButton,
+        tarWidgetControl,
+        onPageChanged,
       );
 }
 
@@ -73,7 +73,8 @@ class _CustomTabBarState extends State<CustomTabBar>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: widget.tabItems!.length);
+    _tabController =
+        TabController(vsync: this, length: widget.tabItems!.length);
   }
 
   @override
